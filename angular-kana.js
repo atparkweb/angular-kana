@@ -3,15 +3,39 @@ var module = angular.module('ap.kana', []);
 module.directive('toKana', function (kanaService) {
 
     function linker(scope, element, attrs) {
+        var whichKana = scope.toKana;
+
         element.on('keyup', function () {
             var value = element.val();
-            element.val(kanaService.toHiragana(value));
+            var conversionFunction;
+
+            switch(whichKana) {
+                case 'hiragana':
+                    conversionFunction = kanaService.toHiragana;
+                    break;
+                case 'katakana':
+                    conversionFunction = kanaService.toKatakana;
+                    break;
+                default:
+                    console.log('error');
+                    break;
+            }
+
+            if (conversionFunction) {
+                element.val(conversionFunction(value));
+            } else {
+                throw new Error('No conversion function');
+            }
+
         });
     }
 
     return {
         link: linker,
-        restrict: 'AC'
+        restrict: 'AC',
+        scope: {
+            'toKana': '@'
+        }
     };
 })
 // Based on node-bulk-replace (https://github.com/jeresig/node-bulk-replace/blob/master/bulk-replace.js)
@@ -227,7 +251,7 @@ angular.module('ap.kana').factory('kanaService', function (bulkReplace) {
             return str;
         },
 
-        toKatakana: function (romaji) {
+        toKatakana: function (str) {
             // All conversion is done in upper-case
             str = str.toUpperCase();
 

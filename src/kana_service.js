@@ -191,7 +191,7 @@ angular.module('ap.kana').factory('kanaService', function (bulkReplace) {
             return str;
         },
 
-        toKatakana: function (romaji) {
+        toKatakana: function (str) {
             // All conversion is done in upper-case
             str = str.toUpperCase();
 
