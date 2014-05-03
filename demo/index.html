@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="demo">
     <head>
         <meta charset="utf-8"/>
         <title>Angular-Kana Demo</title>
+        <style>
+            body {
+                padding: 100px;
+            }
+            input {
+                border-radius: 8px;
+                border: 1px solid #ccc;
+                padding: 0.5em;
+
+                font-size: 30px;
+
+            }
+            input:focus {
+                outline: none;
+            }
+        </style>
     </head>
     <body>
-        <input type="text" to-hiragana />
+        <input type="text" to-kana placeholder="Type here" />
+
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../angular-kana.js"></script>
+        <script src="demo.js"></script>
     </body>
 </html>

@@ -1,20 +1,16 @@
 var module = angular.module('ap.kana', []);
 
-module.directive('toKana', function () {
+module.directive('toKana', function (kanaService) {
 
     function linker(scope, element, attrs) {
         element.on('keyup', function () {
-            console.log(element.value);
+            var value = element.val();
+            element.val(kanaService.toHiragana(value));
         });
-    }
-
-    function controller($scope) {
-
     }
 
     return {
         link: linker,
-        controller: controller,
         restrict: 'AC'
     };
 })
