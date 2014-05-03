@@ -1,0 +1,33 @@
+{
+  "name": "angular-kana",
+  "version": "0.0.1",
+  "description": "Angular directive to translate romaji input to kana",
+  "main": "angular-kana.js",
+  "dependencies": {
+    "grunt": "~0.4.4"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atparkweb/angular-kana.git"
+  },
+  "keywords": [
+    "angular",
+    "japanese",
+    "kana",
+    "romaji",
+    "hiragana",
+    "katakana"
+  ],
+  "author": "Andy Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atparkweb/angular-kana/issues"
+  },
+  "homepage": "https://github.com/atparkweb/angular-kana"
+}
