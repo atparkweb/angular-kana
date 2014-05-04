@@ -5,9 +5,19 @@ module.directive('toKana', function (kanaService) {
     function linker(scope, element, attrs) {
         var whichKana = scope.toKana;
 
-        element.on('keyup', function () {
-            var value = element.val();
-            var conversionFunction;
+        // For adding small delay to prevent inaccurate translation (i.e. 'na' becoming 'んあ')
+        var keyInterval;
+
+        element.on('keyup', function (event) {
+            var keyCode = event.keyCode,
+                value = element.val(),
+                conversionFunction;
+
+            clearInterval(keyInterval);
+
+            if (keyCode < 65 || keyCode > 90) {
+                return;
+            }
 
             switch(whichKana) {
                 case 'hiragana':
@@ -25,7 +35,9 @@ module.directive('toKana', function (kanaService) {
                 throw new Error('"to-kana" attribute value must be either "hiragana" or "katakana"');
             }
 
-            element.val(conversionFunction(value));
+            keyInterval = setInterval(function () {
+                element.val(conversionFunction(value));
+            }, 300);
         });
     }
 
