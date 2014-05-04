@@ -12,8 +12,15 @@ module.exports = function (grunt) {
 
                 dest: 'angular-kana.js'
             }
+        },
+
+        watch: {
+            files: ['src/**/*.js'],
+            tasks: ['concat']
         }
     });
+
+    grunt.registerTask('default', ['concat']);
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');

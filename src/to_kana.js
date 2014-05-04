@@ -21,18 +21,17 @@ module.directive('toKana', function (kanaService) {
                     break;
             }
 
-            if (conversionFunction) {
-                element.val(conversionFunction(value));
-            } else {
-                throw new Error('No conversion function');
+            if (!conversionFunction) {
+                throw new Error('"to-kana" attribute value must be either "hiragana" or "katakana"');
             }
 
+            element.val(conversionFunction(value));
         });
     }
 
     return {
         link: linker,
-        restrict: 'AC',
+        restrict: 'A',
         scope: {
             'toKana': '@'
         }
