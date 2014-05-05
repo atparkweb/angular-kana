@@ -5,9 +5,9 @@ module.exports = function (grunt) {
         concat: {
             dist: {
                 src: [
-                    'src/to_kana.js',
-                    'src/bulk_replace.js',
-                    'src/kana_service.js'
+                    'src/main.js',
+                    'src/directives/to_kana.js',
+                    'src/services/*.js'
                 ],
 
                 dest: 'angular-kana.js'

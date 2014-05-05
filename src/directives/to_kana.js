@@ -1,19 +1,12 @@
-var module = angular.module('ap.kana', []);
-
-module.directive('toKana', function (kanaService) {
+angular.module('ap.kana').directive('toKana', function (kanaService) {
 
     function linker(scope, element, attrs) {
         var whichKana = scope.toKana;
-
-        // For adding small delay to prevent inaccurate translation (i.e. 'na' becoming 'んあ')
-        var keyInterval;
 
         element.on('keyup', function (event) {
             var keyCode = event.keyCode,
                 value = element.val(),
                 conversionFunction;
-
-            clearInterval(keyInterval);
 
             if (keyCode < 65 || keyCode > 90) {
                 return;
@@ -27,7 +20,7 @@ module.directive('toKana', function (kanaService) {
                     conversionFunction = kanaService.toKatakana;
                     break;
                 default:
-                    console.log('error');
+                    conversionFunction = null;
                     break;
             }
 
@@ -35,9 +28,7 @@ module.directive('toKana', function (kanaService) {
                 throw new Error('"to-kana" attribute value must be either "hiragana" or "katakana"');
             }
 
-            keyInterval = setInterval(function () {
-                element.val(conversionFunction(value));
-            }, 300);
+            element.val(conversionFunction(value));
         });
     }
 
@@ -45,7 +36,7 @@ module.directive('toKana', function (kanaService) {
         link: linker,
         restrict: 'A',
         scope: {
-            'toKana': '@'
+            'toKana': '='
         }
     };
 })

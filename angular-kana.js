@@ -1,23 +1,24 @@
-var module = angular.module('ap.kana', []);
+angular.module('ap.kana', []);
 
-module.directive('toKana', function (kanaService) {
+angular.module('ap.kana').directive('toKana', function (kanaService) {
 
     function linker(scope, element, attrs) {
-        var whichKana = scope.toKana;
-
-        // For adding small delay to prevent inaccurate translation (i.e. 'na' becoming 'んあ')
-        var keyInterval;
+        var conversionFunction;
 
         element.on('keyup', function (event) {
             var keyCode = event.keyCode,
-                value = element.val(),
-                conversionFunction;
-
-            clearInterval(keyInterval);
+                value = element.val();
 
             if (keyCode < 65 || keyCode > 90) {
                 return;
             }
+
+            element.val(conversionFunction(value));
+        });
+
+        // Update conversion function everytime attribute toKana value changes
+        scope.$watch('toKana', function () {
+            var whichKana = scope.toKana;
 
             switch(whichKana) {
                 case 'hiragana':
@@ -27,17 +28,13 @@ module.directive('toKana', function (kanaService) {
                     conversionFunction = kanaService.toKatakana;
                     break;
                 default:
-                    console.log('error');
+                    conversionFunction = null;
                     break;
             }
 
             if (!conversionFunction) {
                 throw new Error('"to-kana" attribute value must be either "hiragana" or "katakana"');
             }
-
-            keyInterval = setInterval(function () {
-                element.val(conversionFunction(value));
-            }, 300);
         });
     }
 
@@ -45,10 +42,11 @@ module.directive('toKana', function (kanaService) {
         link: linker,
         restrict: 'A',
         scope: {
-            'toKana': '@'
+            'toKana': '='
         }
     };
 })
+
 // Based on node-bulk-replace (https://github.com/jeresig/node-bulk-replace/blob/master/bulk-replace.js)
 angular.module('ap.kana').factory('bulkReplace', function () {
     return {
