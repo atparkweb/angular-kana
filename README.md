@@ -2,4 +2,4 @@
 
 An Angular directive that translates romaji input to kana.
 
-Based on [Hepburn](https://github.com/lovell/hepburn)
+Based on [Hepburn](https://github.com/lovell/hepburn) inspired by [WaniKani](http://wanikani.com)
