@@ -10,9 +10,9 @@ angular.module('ap.kana').factory('kanaService', function (bulkReplace) {
         "な": "NA", "に": "NI", "ぬ": "NU", "ね": "NE", "の": "NO",
         "は": "HA", "ひ": "HI", "ふ": "FU", "へ": "HE", "ほ": "HO",
         "ま": "MA", "み": "MI", "む": "MU", "め": "ME", "も": "MO",
-        "や": "YA", "ゆ": "YU", "よ": "YO", "ん": "M'",
+        "や": "YA", "ゆ": "YU", "よ": "YO",
         "ら": "RA", "り": "RI", "る": "RU", "れ": "RE", "ろ": "RO",
-        "わ": "WA", "ゐ": "WI", "ゑ": "WE", "を": "WO", "ん": "N'",
+        "わ": "WA", "ゐ": "WI", "ゑ": "WE", "を": "WO", "ん": "NN",
         "が": "GA", "ぎ": "GI", "ぐ": "GU", "げ": "GE", "ご": "GO",
         "ざ": "ZA", "じ": "JI", "ず": "ZU", "ぜ": "ZE", "ぞ": "ZO",
         "だ": "DA", "ぢ": "DJI", "づ": "DZU", "で": "DE", "ど": "DO",
@@ -44,7 +44,7 @@ angular.module('ap.kana').factory('kanaService', function (bulkReplace) {
         "マ": "MA", "ミ": "MI", "ム": "MU", "メ": "ME", "モ": "MO",
         "ヤ": "YA", "ユ": "YU", "ヨ": "YO",
         "ラ": "RA", "リ": "RI", "ル": "RU", "レ": "RE", "ロ": "RO",
-        "ワ": "WA", "ヰ": "WI", "ヱ": "WE",  "ヲ": "WO", "ン": "N",
+        "ワ": "WA", "ヰ": "WI", "ヱ": "WE",  "ヲ": "WO", "ン": "NN",
         "ガ": "GA", "ギ": "GI", "グ": "GU", "ゲ": "GE", "ゴ": "GO",
         "ザ": "ZA", "ジ": "JI", "ズ": "ZU", "ゼ": "ZE", "ゾ": "ZO",
         "ダ": "DA", "ヂ": "DJI", "ヅ": "DZU", "デ": "DE", "ド": "DO",
@@ -186,7 +186,9 @@ angular.module('ap.kana').factory('kanaService', function (bulkReplace) {
             str = bulkReplace.replace(str, hiraganaRegex, hiraganaMap);
 
             // Fix any remaining N/M usage (that isn't a N' usage)
-            str = str.replace(/N|M/g, "ん");
+            // TODO: This does not work with realtime translation. Find alternate
+            //       solution.
+            //str = str.replace(/N|M/g, "ん");
 
             return str;
         },
