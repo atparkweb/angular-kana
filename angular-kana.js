@@ -1,6 +1,6 @@
-angular.module('ap.kana', []);
+angular.module('atparkweb.kana', []);
 
-angular.module('ap.kana').directive('toKana', function (kanaService) {
+angular.module('atparkweb.kana').directive('toKana', function (kanaService) {
 
     function linker(scope, element, attrs) {
         var whichKana = scope.toKana;
@@ -44,7 +44,7 @@ angular.module('ap.kana').directive('toKana', function (kanaService) {
 })
 
 // Based on node-bulk-replace (https://github.com/jeresig/node-bulk-replace/blob/master/bulk-replace.js)
-angular.module('ap.kana').factory('bulkReplace', function () {
+angular.module('atparkweb.kana').factory('bulkReplace', function () {
     return {
         replace: function (str, regex, map) {
             if (arguments.length === 2) {
@@ -65,7 +65,7 @@ angular.module('ap.kana').factory('bulkReplace', function () {
 
 
 // Based on hepburn (https://github.com/lovell/hepburn)
-angular.module('ap.kana').factory('kanaService', function (bulkReplace) {
+angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
 
     var hiraganaMonographs = {
         "a": "あ", "i": "い", "u": "う", "e": "え", "o": "お",

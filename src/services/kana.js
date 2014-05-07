@@ -1,6 +1,6 @@
 
 // Based on hepburn (https://github.com/lovell/hepburn)
-angular.module('ap.kana').factory('kanaService', function (bulkReplace) {
+angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
 
     var hiraganaMonographs = {
         "a": "あ", "i": "い", "u": "う", "e": "え", "o": "お",

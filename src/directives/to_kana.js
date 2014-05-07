@@ -1,4 +1,4 @@
-angular.module('ap.kana').directive('toKana', function (kanaService) {
+angular.module('atparkweb.kana').directive('toKana', function (kanaService) {
 
     function linker(scope, element, attrs) {
         var whichKana = scope.toKana;

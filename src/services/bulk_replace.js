@@ -1,5 +1,5 @@
 // Based on node-bulk-replace (https://github.com/jeresig/node-bulk-replace/blob/master/bulk-replace.js)
-angular.module('ap.kana').factory('bulkReplace', function () {
+angular.module('atparkweb.kana').factory('bulkReplace', function () {
     return {
         replace: function (str, regex, map) {
             if (arguments.length === 2) {

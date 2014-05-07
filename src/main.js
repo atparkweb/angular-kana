@@ -1,1 +1,1 @@
-angular.module('ap.kana', []);
+angular.module('atparkweb.kana', []);

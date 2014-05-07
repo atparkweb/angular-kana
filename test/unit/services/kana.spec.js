@@ -2,7 +2,7 @@ describe('angular-kana: kanaService', function () {
     var kanaService;
 
     beforeEach(function () {
-        angular.mock.module('ap.kana');
+        angular.mock.module('atparkweb.kana');
     });
 
     beforeEach(inject(function (kanaService) {
