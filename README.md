@@ -1,6 +1,6 @@
 #Angular Kana
 
-An Angular directive that translates roumaji input text to kana.
+An Angular directive that transliterates roumaji input text to kana.
 
 Based on [Hepburn](https://github.com/lovell/hepburn) inspired by [WaniKani](http://wanikani.com)
 
