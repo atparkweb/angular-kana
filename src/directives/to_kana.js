@@ -20,12 +20,8 @@ angular.module('atparkweb.kana').directive('toKana', function (kanaService) {
                     conversionFunction = kanaService.toKatakana;
                     break;
                 default:
-                    conversionFunction = null;
+                    conversionFunction = kanaService.toHiragana;
                     break;
-            }
-
-            if (!conversionFunction) {
-                throw new Error('"to-kana" attribute value must be either "hiragana" or "katakana"');
             }
 
             element.val(conversionFunction(value));
