@@ -133,6 +133,9 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
             str = str.replace(/([^aeioun])\1/g, "ッ$1");
             str = str.replace(/nn/g, "ン");
 
+            // Use dash for long vowel sounds
+            str = str.replace(/([aeiou])\1/g, "$1ー");
+
             // Transliteration
             str = bulkReplace.replace(str, katakanaRegex, katakanaMap);
 
