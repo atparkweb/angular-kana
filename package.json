@@ -1,7 +1,7 @@
 {
   "name": "angular-kana",
   "version": "0.1.1",
-  "description": "Angular directive to translate romaji input to kana",
+  "description": "Angular directive to translate rōmaji input to kana",
   "main": "angular-kana.js",
   "dependencies": {
     "grunt": "~0.4.4"

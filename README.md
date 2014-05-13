@@ -1,6 +1,6 @@
 #Angular Kana
 
-An Angular directive that transliterates roumaji input text to kana.
+An Angular directive that transliterates rōmaji input text to kana.
 
 Based on [Hepburn](https://github.com/lovell/hepburn) inspired by [WaniKani](http://wanikani.com)
 
@@ -13,6 +13,17 @@ module declaration:
 
 Attach the directive attribute to any input field with type=text:
 
-    <input to-kana="hiragana" type="text" />
+    <!-- transliterate to hiragana -->
+    <input to-kana="'hiragana'" type="text" />
 
-Attribute value can be either "hiragana" or "katakana". "hiragana" is the default value.
+
+    <!-- transliterate to katakana -->
+    <input to-kana="'katakana'" type="text" />
+
+
+    <!-- transliterate mode passed in from scope -->
+    // $scope.whichKana = 'hiragana' (or 'katakana')
+    <input to-kana="whichKana" type="text" />
+
+
+Attribute value can be either "hiragana" or "katakana". "hiragana" is the default value if the attribute is empty.
