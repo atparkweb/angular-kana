@@ -30,8 +30,8 @@ Attribute value can be either "hiragana" or "katakana". "hiragana" is the defaul
 
 # Browser Compatibility
 
-Firefox (Gecko) 4 (2.0)
-Chrome 5
-Internet Explorer 9
-Opera 12
-Safari 5
+* Firefox (Gecko) 4 (2.0)
+* Chrome 5
+* Internet Explorer 9
+* Opera 12
+* Safari 5
