@@ -1,6 +1,6 @@
 
 // Based on hepburn (https://github.com/lovell/hepburn)
-angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
+angular.module('atparkweb.kana').factory('kanaService', ['bulkReplace', function (bulkReplace) {
 
     var hiraganaMonographs = {
         "a": "あ", "i": "い", "u": "う", "e": "え", "o": "お",
@@ -12,7 +12,7 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
         "ma": "ま", "mi": "み", "mu": "む", "me": "め", "mo": "も",
         "ya": "や", "yu": "ゆ", "yo": "よ",
         "ra": "ら", "ri": "り", "ru": "る", "re": "れ", "ro": "ろ",
-        "wa": "わ", "wi": "ゐ", "we": "ゑ", "wo": "を", "n": "ん",
+        "wa": "わ", "wi": "ゐ", "we": "ゑ", "wo": "を", "nn": "ん",
         "ga": "が", "gi": "ぎ", "gu": "ぐ", "ge": "げ", "go": "ご",
         "za": "ざ", "ji": "じ", "zu": "ず", "ze": "ぜ", "zo": "ぞ",
         "da": "だ", "djI": "ぢ", "dzU": "づ", "de": "で", "do": "ど",
@@ -44,7 +44,7 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
         "ma": "マ", "mi": "ミ", "mu": "ム", "me": "メ", "mo": "モ",
         "ya": "ヤ", "yo": "ヨ", "yu": "ユ",
         "ra": "ラ", "ri": "リ", "ru": "ル",  "re": "レ", "ro": "ロ",
-        "wa": "ワ", "wi": "ヰ", "we": "ヱ", "wo": "ヲ", "n": "ン",
+        "wa": "ワ", "wi": "ヰ", "we": "ヱ", "wo": "ヲ", "nn": "ン",
         "ga": "ガ", "gi": "ギ", "gu": "ぐ", "ge": "ゲ", "go": "ゴ",
         "za": "ザ", "ji": "ジ", "zu": "ズ", "ze": "ゼ", "zo": "ゾ",
         "da": "ダ", "dji": "ヂ", "dzu": "ヅ", "de": "デ", "do": "ド",
@@ -90,6 +90,7 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
 
     var katakanaMap = {};
 
+    // TODO: Make IE8 compatible
     Object.keys(katakanaMonographs).forEach(function (key) {
         var value = katakanaMonographs[key];
 
@@ -98,6 +99,7 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
         }
     });
 
+    // TODO: Make IE8 compatible
     Object.keys(katakanaDigraphs).forEach(function (key) {
         var value = katakanaDigraphs[key];
 
@@ -117,8 +119,14 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
             // All conversion is done in lower-case
             str = str.toLowerCase();
 
+            // Double consonant
             str = str.replace(/([^aeioun])\1/g, "っ$1");
+
+            // Transliterate double 'n'
             str = str.replace(/nn/g, "ん");
+
+            // Transliterate 'n' followed by consonant
+            str = str.replace(/n([^aeioun])/g, "ん$1");
 
             // Transliteration
             str = bulkReplace.replace(str, hiraganaRegex, hiraganaMap);
@@ -130,11 +138,17 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
             // All conversion is done in lower-case
             str = str.toLowerCase();
 
+            // Double consonant
             str = str.replace(/([^aeioun])\1/g, "ッ$1");
+
+            // Transliterate double 'n'
             str = str.replace(/nn/g, "ン");
 
-            // Use dash for long vowel sounds
-            str = str.replace(/([aeiou])\1/g, "$1ー");
+            // Transliterate 'n' followed by consonant
+            str = str.replace(/n([^aeioun])/g, "ン$1");
+
+            // Transliterate hyphen to long dash
+            str = str.replace(/-/g, "ー");
 
             // Transliteration
             str = bulkReplace.replace(str, katakanaRegex, katakanaMap);
@@ -142,4 +156,4 @@ angular.module('atparkweb.kana').factory('kanaService', function (bulkReplace) {
             return str;
         }
     };
-});
+}]);

@@ -1,16 +1,11 @@
-angular.module('atparkweb.kana').directive('toKana', function (kanaService) {
+angular.module('atparkweb.kana').directive('toKana', ['kanaService', function (kanaService) {
 
     function linker(scope, element, attrs) {
-        var whichKana = scope.toKana;
-
         element.on('keyup', function (event) {
+            var whichKana = scope.toKana;
             var keyCode = event.keyCode,
                 value = element.val(),
                 conversionFunction;
-
-            if (keyCode < 65 || keyCode > 90) {
-                return;
-            }
 
             switch(whichKana) {
                 case 'hiragana':
@@ -35,4 +30,4 @@ angular.module('atparkweb.kana').directive('toKana', function (kanaService) {
             'toKana': '='
         }
     };
-})
+}])
