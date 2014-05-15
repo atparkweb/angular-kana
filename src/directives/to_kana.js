@@ -3,8 +3,7 @@ angular.module('atparkweb.kana').directive('toKana', ['kanaService', function (k
     function linker(scope, element, attrs) {
         element.on('keyup', function (event) {
             var whichKana = scope.toKana;
-            var keyCode = event.keyCode,
-                value = element.val(),
+            var value = element.val(),
                 conversionFunction;
 
             switch(whichKana) {
