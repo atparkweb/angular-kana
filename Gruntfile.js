@@ -34,12 +34,40 @@ module.exports = function (grunt) {
         watch: {
             files: ['src/**/*.js'],
             tasks: ['concat']
+        },
+
+        // Run unit tests with testem
+        testem: {
+            dist: {
+                src: [
+                    'bower_components/angular/angular.js',
+                    'bower_components/angular-mocks/angular-mocks.js',
+                    'angular-kana.js',
+                    'test/unit/**/*.js'
+                ],
+                options: {
+                    framework: 'jasmine'
+                }
+            },
+
+            dist_min: {
+                src: [
+                    'bower_components/angular/angular.js',
+                    'bower_components/angular-mocks/angular-mocks.js',
+                    'angular-kana.min.js',
+                    'test/unit/**/*.js'
+                ],
+                options: {
+                    framework: 'jasmine'
+                }
+            }
         }
     });
 
-    grunt.registerTask('default', ['concat', 'uglify', 'watch']);
+    grunt.registerTask('default', ['concat', 'uglify', 'watch', 'testem.dist_min']);
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-testem');
 };

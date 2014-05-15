@@ -25,9 +25,45 @@ describe('angular-kana: toKana directive', function () {
         });
 
         it('should transliterate double \'n\'', function () {
-            input.sendKeys('minnnasan');
+            input.sendKeys('minnnasann');
 
             expect(input.getAttribute('value')).toBe('みんなさん');
+        });
+    });
+
+    describe('toKatakana', function () {
+        var input;
+
+        beforeEach(function () {
+            input = $('#to-katakana');
+        });
+
+        afterEach(function () {
+            input.clear();
+        });
+
+        it('should transliterate to katakana', function () {
+            input.sendKeys('katakana');
+
+            expect(input.getAttribute('value')).toBe('カタカナ');
+        });
+
+        it('should not transliterate unsupported characters', function () {
+            input.sendKeys('kanax');
+
+            expect(input.getAttribute('value')).toBe('カナx');
+        });
+
+        it('should transliterate double \'n\'', function () {
+            input.sendKeys('pann');
+
+            expect(input.getAttribute('value')).toBe('パン');
+        });
+
+        it('should transliterate hyphen', function () {
+            input.sendKeys('ra-menn');
+
+            expect(input.getAttribute('value')).toBe('ラーメン');
         });
     });
 });
