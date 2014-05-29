@@ -1,4 +1,5 @@
 module.exports = function (grunt) {
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -11,6 +12,16 @@ module.exports = function (grunt) {
                 ],
 
                 dest: 'angular-kana.js'
+            },
+            ie: {
+                src: [
+                    'src/ie/ie_polyfill.js',
+                    'src/main.js',
+                    'src/directives/to_kana.js',
+                    'src/services/*.js'
+                ],
+
+                dest: 'angular-kana-ie.js'
             }
         },
 
@@ -26,7 +37,8 @@ module.exports = function (grunt) {
                 },
 
                 files: {
-                    'angular-kana.min.js': ['angular-kana.js']
+                    'angular-kana.min.js': ['angular-kana.js'],
+                    'angular-kana-ie.min.js': ['angular-kana-ie.js']
                 }
             }
         },
