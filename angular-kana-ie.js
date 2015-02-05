@@ -114,7 +114,7 @@ angular.module('atparkweb.kana').factory('kanaService', ['bulkReplace', function
         "wa": "わ", "wi": "ゐ", "we": "ゑ", "wo": "を", "nn": "ん",
         "ga": "が", "gi": "ぎ", "gu": "ぐ", "ge": "げ", "go": "ご",
         "za": "ざ", "ji": "じ", "zu": "ず", "ze": "ぜ", "zo": "ぞ",
-        "da": "だ", "djI": "ぢ", "dzU": "づ", "de": "で", "do": "ど",
+        "da": "だ", "dj": "ぢ", "dz": "づ", "de": "で", "do": "ど",
         "ba": "ば", "bi": "び", "bu": "ぶ", "be": "べ", "bo": "ぼ",
         "pa": "ぱ", "pi": "ぴ", "pu": "ぷ", "pe": "ぺ", "po": "ぽ"
     };
@@ -225,7 +225,7 @@ angular.module('atparkweb.kana').factory('kanaService', ['bulkReplace', function
             str = str.replace(/nn/g, "ん");
 
             // Transliterate 'n' followed by consonant
-            str = str.replace(/n([^aeioun])/g, "ん$1");
+            str = str.replace(/n([^aeiouny])/g, "ん$1");
 
             // Transliteration
             str = bulkReplace.replace(str, hiraganaRegex, hiraganaMap);
@@ -244,7 +244,7 @@ angular.module('atparkweb.kana').factory('kanaService', ['bulkReplace', function
             str = str.replace(/nn/g, "ン");
 
             // Transliterate 'n' followed by consonant
-            str = str.replace(/n([^aeioun])/g, "ン$1");
+            str = str.replace(/n([^aeiouny])/g, "ン$1");
 
             // Transliterate hyphen to long dash
             str = str.replace(/-/g, "ー");
@@ -253,6 +253,22 @@ angular.module('atparkweb.kana').factory('kanaService', ['bulkReplace', function
             str = bulkReplace.replace(str, katakanaRegex, katakanaMap);
 
             return str;
-        }
+        },
+
+		getHiraganaMonographs: function () {
+			return hiraganaMonographs;
+		},
+
+		getHiraganaDigraphs: function () {
+			return hiraganaDigraphs;
+		},
+
+		getKatakanaMonographs: function () {
+			return katakanaMonographs;
+		},
+
+		getKatakanaDigraphs: function () {
+			return katakanaDigraphs;
+		}
     };
 }]);

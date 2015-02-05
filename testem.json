@@ -3,7 +3,13 @@
     "src_files": [
         "bower_components/angular/angular.js",
         "bower_components/angular-mocks/angular-mocks.js",
-        "angular-kana.min.js",
+        "angular-kana.js",
         "test/unit/**/*.spec.js"
-    ]
+    ],
+	"serve_files": [
+		"bower_components/angular/angular.js",
+		"bower_components/angular-mocks/angular-mocks.js",
+		"angular-kana.js",
+		"test/unit/**/*.spec.js"
+	]
 }

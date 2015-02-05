@@ -1,6 +1,4 @@
 describe('angular-kana: kanaService', function () {
-    var kanaService;
-
     beforeEach(function () {
         angular.mock.module('atparkweb.kana');
     });
@@ -11,10 +9,18 @@ describe('angular-kana: kanaService', function () {
 
     describe('toHiragana', function () {
         it('should transliterate to hiragana', function () {
-            expect(this.kanaService.toHiragana('hiragana')).toBe('ひらがな');
-        });
+			var monographs = this.kanaService.getHiraganaMonographs(),
+				digraphs = this.kanaService.getHiraganaDigraphs();
 
-        it('should transliterate all-caps to hiragana', function () {
+			Object.keys(monographs).forEach(function (k) {
+				expect(this.kanaService.toHiragana(k)).toBe(monographs[k])
+			}, this);
+			Object.keys(digraphs).forEach(function (k) {
+				expect(this.kanaService.toHiragana(k)).toBe(digraphs[k]);
+			}, this);
+		});
+
+		it('should transliterate all-caps to hiragana', function () {
             expect(this.kanaService.toHiragana('HIRAGANA')).toBe('ひらがな');
         });
 
@@ -49,7 +55,15 @@ describe('angular-kana: kanaService', function () {
 
     describe('toKatakana', function () {
         it('should transliterate to katakana', function () {
-            expect(this.kanaService.toKatakana('katakana')).toBe('カタカナ');
+			var monographs = this.kanaService.getKatakanaMonographs(),
+				digraphs = this.kanaService.getKatakanaDigraphs();
+
+			Object.keys(monographs).forEach(function (k) {
+				expect(this.kanaService.toKatakana(k)).toBe(monographs[k])
+			}, this);
+			Object.keys(digraphs).forEach(function (k) {
+				expect(this.kanaService.toKatakana(k)).toBe(digraphs[k]);
+			}, this);
         });
 
         it('should transliterate all-caps to katakana', function () {

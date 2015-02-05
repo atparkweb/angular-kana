@@ -50,7 +50,7 @@ module.exports = function (grunt) {
 
         // Run unit tests with testem
         testem: {
-            dist: {
+            dev: {
                 src: [
                     'bower_components/angular/angular.js',
                     'bower_components/angular-mocks/angular-mocks.js',
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                 }
             },
 
-            dist_min: {
+            dist: {
                 src: [
                     'bower_components/angular/angular.js',
                     'bower_components/angular-mocks/angular-mocks.js',
@@ -76,7 +76,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['concat', 'uglify', 'watch', 'testem.dist_min']);
+    grunt.registerTask('default', ['concat', 'uglify', 'watch']);
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
